@@ -1,14 +1,7 @@
 package com.ias.gestioneventos.model;
 
 
-
-
-
-
-
-
 public enum TipoEvento {
-
 
 
     Bautizo,

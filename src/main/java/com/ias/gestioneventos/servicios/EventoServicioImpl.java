@@ -2,6 +2,7 @@ package com.ias.gestioneventos.servicios;
 
 import com.ias.gestioneventos.model.Eventos;
 import com.ias.gestioneventos.model.TipoEvento;
+import com.ias.gestioneventos.repositorios.EventoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,18 +17,20 @@ public class EventoServicioImpl {
     @Autowired
     private DescripEventoServicio descripEventoServicio;
 
-    @Autowired
-    private TipoEventoService tipoEventoService;
+  //  @Autowired
+  //  private TipoEventoService tipoEventoService;
 
+    @Autowired
+    private EventoRepositorio eventoRepositorio;
 
 
     // Método para obtener todos los eventos
-    public List<Eventos> obtenerEventos(){
+    public List<Eventos> obtenerEventos() {
         return eventoServicio.obtenerEventos();
     }
 
     // Refactorizando el método guardarEvento para asociar la descripción
-    public Eventos guardarEvento(Eventos evento){
+    public Eventos guardarEvento(Eventos evento) {
         // llamamos el metodo obtenerDescripcionPorTipoEvento para obtener la descripción y anexarla al evento
         String descripcion = obtenerDescripcionPorTipoEvento(evento.getTipoEvento());
         if (descripcion != null) {
@@ -81,11 +84,14 @@ public class EventoServicioImpl {
         return null; // Devuelve null si no se encuentra el evento
     }
 
-    public List<Eventos> obtenerEventosPorTipo(TipoEvento tipoEvento) {
-        return tipoEventoService.obtenerEventosPorTipo(tipoEvento);
+    public List<Eventos> obtenerEventosPorTipo( TipoEvento tipoEvento) {
+        return eventoRepositorio.findAllByTipoEvento(tipoEvento);
     }
 
 
+  //  public List<Eventos> obtenerEventosPorTipoDes(Eventos tipoEvento) {
+ //       return tipoEventoService.obtenerEventosPorTipoDes(tipoEvento);
+   // }
 
 
 }

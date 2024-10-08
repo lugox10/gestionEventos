@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/eventos")
+@RequestMapping("/iasapi/eventos")
 public class EventoControlador {
 
     @Autowired
@@ -23,11 +23,11 @@ public class EventoControlador {
         return ResponseEntity.ok(eventos);
     }
 
-    // Obtener eventos por tipo
-    @GetMapping("/tipo/{tipoEvento}")
-    public ResponseEntity<List<Eventos>> obtenerEventosPorTipo(@PathVariable TipoEvento tipoEvento) {
-        List<Eventos> eventos = eventoServicioImpl.obtenerEventosPorTipo(tipoEvento).stream().toList();
-        return ResponseEntity.ok(eventos);
+
+    @GetMapping("/{tipoEvento}")
+    public ResponseEntity<List< Eventos>> obtenerEventosPorTipo(@PathVariable TipoEvento tipoEvento) {
+        List<Eventos> eventos = eventoServicioImpl.obtenerEventosPorTipo(tipoEvento);
+        return eventos.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(eventos);
     }
 
     // Crear un nuevo evento
@@ -47,9 +47,6 @@ public class EventoControlador {
         evento.setId(id);
         eventoServicioImpl.actualizarEvento(evento);
         return ResponseEntity.ok(evento);
-
-
-
 
 
     }
