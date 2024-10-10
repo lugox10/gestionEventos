@@ -2,7 +2,9 @@ package com.ias.gestioneventos.servicios;
 
 import com.ias.gestioneventos.model.Eventos;
 import com.ias.gestioneventos.model.TipoEvento;
+import com.ias.gestioneventos.model.Usuario;
 import com.ias.gestioneventos.repositorios.EventoRepositorio;
+import com.ias.gestioneventos.repositorios.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +19,11 @@ public class EventoServicioImpl {
     @Autowired
     private DescripEventoServicio descripEventoServicio;
 
-  //  @Autowired
-  //  private TipoEventoService tipoEventoService;
-
     @Autowired
     private EventoRepositorio eventoRepositorio;
+
+    @Autowired
+    UsuarioRepositorio usuarioRepositorio;
 
 
     // Método para obtener todos los eventos
@@ -50,19 +52,19 @@ public class EventoServicioImpl {
                 return descripEventoServicio.descripConfirmacion();
             case matrimonio:
                 return descripEventoServicio.descripMatrimonio();
-            case fiestaInfantil:
+            case fiesta_Infantil:
                 return descripEventoServicio.descripEventoInfantil();
-            case fiestaEmpresarial:
+            case fiesta_Empresarial:
                 return descripEventoServicio.descripEventoEmpresarial();
-            case fiestaFamiliar:
+            case fiesta_Familiar:
                 return descripEventoServicio.descripFiestaFamiliar();
-            case fiestaDeQuince:
+            case fiesta_DeQuince:
                 return descripEventoServicio.descripfiestaDeQuince();
-            case fiestaDeGraduacion:
+            case fiestaDe_Graduacion:
                 return descripEventoServicio.descripFiestaGraduacion();
-            case fiestaDeAniversario:
+            case fiesta_De_Aniversario:
                 return descripEventoServicio.descripFiestaAniversario();
-            case fiestaDeDespedidaSoltero:
+            case fiesta_Despedida_Soltero:
                 return descripEventoServicio.descripFiestaDespedida();
             default:
                 return null;
@@ -89,9 +91,14 @@ public class EventoServicioImpl {
     }
 
 
-  //  public List<Eventos> obtenerEventosPorTipoDes(Eventos tipoEvento) {
- //       return tipoEventoService.obtenerEventosPorTipoDes(tipoEvento);
-   // }
+    // Registrar un usuario en un evento
+    public void registrarEnEvento(Long idUsuario, Long idEvento) {
+        Usuario usuario = usuarioRepositorio.findById(idUsuario).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        Eventos evento = eventoRepositorio.findById(idEvento).orElseThrow(() -> new RuntimeException("Evento no encontrado"));
+        usuario.getEventos().add(evento);
+        usuarioRepositorio.save(usuario);
+    }
+
 
 
 }

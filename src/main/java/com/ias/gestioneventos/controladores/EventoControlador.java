@@ -25,9 +25,9 @@ public class EventoControlador {
 
 
     @GetMapping("/{tipoEvento}")
-    public ResponseEntity<List< Eventos>> obtenerEventosPorTipo(@PathVariable TipoEvento tipoEvento) {
+    public ResponseEntity<List<Eventos>> obtenerEventosPorTipo(@PathVariable TipoEvento tipoEvento) {
         List<Eventos> eventos = eventoServicioImpl.obtenerEventosPorTipo(tipoEvento);
-        return eventos.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(eventos);
+        return ResponseEntity.ok(eventos).status(200).build();
     }
 
     // Crear un nuevo evento
