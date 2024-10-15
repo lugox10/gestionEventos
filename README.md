@@ -1,6 +1,9 @@
 #EJERCICIO PROPUESTO por ias-Arquitectura GestionEventos: este ejercicio fue realizado con java, spring boot, bd en h2.
-#Este ejercico esta contruido con el patron arquitectonico Modelo-Vista-Controlador (MVC) repositorio de la vista => https://github.com/lugox10/gestion-Eventos-frontend (NO terminado)creada con Angular
+
+#Este ejercico esta construido con el patron arquitectonico Modelo-Vista-Controlador (MVC),  repositorio de la vista => https://github.com/lugox10/gestion-Eventos-frontend (NO terminado) creada con Angular
+
 #paradigma de programacion orientada a objetos(OOP)
+
 #Se creo la estructura tratando de seguir los prinsipios de programacion SOLID y sus pilares fundamentales. Clean Arquitecture , Camelcase.
 
 #Esta es la estructura: se crearon los paquetes Modelo,repositorio,servicio,controlador ,configuracionCcontolador.
@@ -14,6 +17,7 @@
 #![clase enum TiposDe Eventos](https://github.com/user-attachments/assets/dd8c0c71-1f9a-405e-afb3-8b5bb0b91375)
 
 #metodo CrearEvento() de la clase "EventoControlador" del paquete "controladores" guardando exitosamente ok (200)
+#NOTA:CUANDO EL USUARIO DESDE LA VISTA DA SUS VALOSRES YA PROPUESTOS POR LOS ENUMS COMO SON TipoDeLugares y TipoDeEvento EL SISTEMA TE AGREGA AUTOMATICAMENTE ESOS VALORES MEDIANTE UNA BARRA DEPLEGABLE IMPLEMENTADA EL EL REPOSITORIO DEL FRONT-END
 ![metodo crearEvento](https://github.com/user-attachments/assets/9f57e8ba-a528-4891-b07d-b9dacd8cccdf)
 
 #metodo obtenerTodosLosEventos() de la clase "EventoControlador" del paquete "controladores" listando los eventos guardados exitosamente ok (200)
