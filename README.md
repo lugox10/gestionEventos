@@ -2,7 +2,7 @@
 
 #Este ejercico esta construido con el patron arquitectonico Modelo-Vista-Controlador (MVC),  repositorio de la vista => https://github.com/lugox10/gestion-Eventos-frontend (NO terminado) creada con Angular
 
-#paradigma de programacion orientada a objetos(OOP)
+#paradigma de programacion orientada a objetos(OOP).
 
 #Se creo la estructura tratando de seguir los prinsipios de programacion SOLID y sus pilares fundamentales. Clean Arquitecture , Camelcase.
 
