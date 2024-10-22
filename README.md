@@ -25,9 +25,11 @@
 
 Listas las validaciones con el patron de diseño ResponseWrapper,
 AQUI una muestra de respuesta con mensajes personalizados
+![validaciones ResponseWrapper](https://github.com/user-attachments/assets/ddff8857-06ac-4104-aabc-b918f889e065)
+
 
 #NOTA:Esto es lo que llevo provado Hasta el momento. ya que actualice unas interfaces y repositorios que no seguian los lineamientos propuestos por el Dep de Arquitectura.
-#gracias por las observaciones y recomendaciones, y ala espera de nuevos ejercicios y o requerimientos en este proyecto, mientras tratare de culminarlo o finalizarlo con las otras clases propuestas asi como las implementaciones de validaciones, jwt y docker 
+#gracias por las observaciones y recomendaciones, y ala espera de nuevos ejercicios y o requerimientos en este proyecto, mientras tratare de culminarlo o finalizarlo con las otras clases propuestas asi como las implementaciones  jwt y docker 
 
 
 
