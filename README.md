@@ -23,6 +23,9 @@
 #metodo obtenerTodosLosEventos() de la clase "EventoControlador" del paquete "controladores" listando los eventos guardados exitosamente ok (200)
 #![LISTA DE EVENTOS REGISTRADOS](https://github.com/user-attachments/assets/ba11376c-ecaa-48dc-adc1-6ce735374945)
 
+Listas las validaciones con el patron de diseño ResponseWrapper,
+AQUI una muestra de respuesta con mensajes personalizados
+
 #NOTA:Esto es lo que llevo provado Hasta el momento. ya que actualice unas interfaces y repositorios que no seguian los lineamientos propuestos por el Dep de Arquitectura.
 #gracias por las observaciones y recomendaciones, y ala espera de nuevos ejercicios y o requerimientos en este proyecto, mientras tratare de culminarlo o finalizarlo con las otras clases propuestas asi como las implementaciones de validaciones, jwt y docker 
 
