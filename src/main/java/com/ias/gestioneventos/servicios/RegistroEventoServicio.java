@@ -36,9 +36,7 @@ public class RegistroEventoServicio {
     }
 
     // Método para obtener eventos por usuario
-    public List<RegistroEvento> obtenerEventosPorUsuario(Long usuarioId) {
-        return registroEventoRepository.findByUsuarioId(usuarioId);
-    }
+
 
     // Método para obtener usuarios por evento
     public List<RegistroEvento> obtenerUsuariosPorEvento(Long eventoId) {

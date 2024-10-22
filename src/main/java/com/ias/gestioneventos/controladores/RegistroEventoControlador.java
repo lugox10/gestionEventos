@@ -22,13 +22,6 @@ public class RegistroEventoControlador {
         return ResponseEntity.ok(registroEvento);
     }
 
-    // Endpoint para obtener los eventos de un usuario
-    @GetMapping("/usuario/{usuarioId}")
-    public ResponseEntity<List<RegistroEvento>> obtenerEventosPorUsuario(@PathVariable Long usuarioId) {
-        List<RegistroEvento> eventos = registroEventoServicio.obtenerEventosPorUsuario(usuarioId);
-        return ResponseEntity.ok(eventos);
-    }
-
     // Endpoint para obtener los usuarios registrados en un evento
     @GetMapping("/evento/{eventoId}")
     public ResponseEntity<List<RegistroEvento>> obtenerUsuariosPorEvento(@PathVariable Long eventoId) {

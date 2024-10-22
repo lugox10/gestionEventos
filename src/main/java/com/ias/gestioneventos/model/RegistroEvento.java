@@ -20,5 +20,4 @@ public class RegistroEvento {
     @JoinColumn(name = "evento_id")
     private Eventos evento;
 
-    // Otros atributos si son necesarios
 }
