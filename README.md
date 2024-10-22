@@ -7,7 +7,7 @@
 #Se creo la estructura tratando de seguir los prinsipios de programacion SOLID y sus pilares fundamentales. Clean Arquitecture , Camelcase.
 
 #Esta es la estructura: se crearon los paquetes Modelo,repositorio,servicio,controlador ,configuracionCcontolador.
-#![estructura del proyecto](https://github.com/user-attachments/assets/4d6f1d77-b99e-4954-870f-4cb89e37ad1c)
+#![estructura del proyecto](https://github.com/user-attachments/assets/4d6f1d77-b99e-4954-870f-4cb89e37ad1c).
 
 #Clase "Evento" del paquete "modelos" 
 #![clase evento](https://github.com/user-attachments/assets/d1cfb468-15cd-4b25-b29a-3e7538ad7f88)
