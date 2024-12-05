@@ -1,7 +1,7 @@
-package com.ias.gestioneventos.servicios;
+package com.ias.gestioneventos.applications.useCase;
 
-import com.ias.gestioneventos.model.Eventos;
-import com.ias.gestioneventos.repositorios.EventoRepositorio;
+import com.ias.gestioneventos.infraestructure.persistenciaDatosJPA.Eventos;
+import com.ias.gestioneventos.infraestructure.persistenciaDatosJPA.EventoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,9 +13,6 @@ public class EventoServicio {
     @Autowired
     private EventoRepositorio eventoRepositorio;
 
-    // @Autowired
-    //  private IntTipoEvento i;
-
 
     public List<Eventos> obtenerEventos() {
         return eventoRepositorio.findAll();
@@ -25,19 +22,13 @@ public class EventoServicio {
         return eventoRepositorio.save(evento);
     }
 
-    public void eliminarEvento(Long id) {
-        eventoRepositorio.deleteById(id);
-    }
-
     public Eventos actualizarEvento(Eventos evento) {
         return eventoRepositorio.save(evento);
     }
 
-//falta metodo para obtener eventos por tipo
-    // public List<Eventos> obtenerEventosPorTipoDes(Eventos tipoEvento) {
-    //    return i.obtenerEventosPorTipoDes(tipoEvento);
-    // }
-
+    public void eliminarEvento (Long id) {
+        eventoRepositorio.deleteById (id);
+    }
 
 }
 

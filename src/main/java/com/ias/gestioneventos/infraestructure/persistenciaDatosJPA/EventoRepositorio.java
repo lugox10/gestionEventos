@@ -1,7 +1,6 @@
-package com.ias.gestioneventos.repositorios;
+package com.ias.gestioneventos.infraestructure.persistenciaDatosJPA;
 
-import com.ias.gestioneventos.model.Eventos;
-import com.ias.gestioneventos.model.TipoEvento;
+import com.ias.gestioneventos.domain.model.TipoEvento;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

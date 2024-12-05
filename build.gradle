@@ -33,6 +33,18 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     runtimeOnly 'com.h2database:h2'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    dependencies {
+        // MapStruct para la conversión de objetos
+        implementation 'org.mapstruct:mapstruct:1.5.3.Final' // Versión más reciente de MapStruct
+
+        // Procesador de MapStruct, solo se necesita en tiempo de compilación
+        compileOnly 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+
+        // Para habilitar la anotación y procesamiento de anotaciones (necesario para MapStruct)
+        annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+    }
+
+
 }
 
 tasks.named('test') {

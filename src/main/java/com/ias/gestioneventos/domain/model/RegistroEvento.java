@@ -1,5 +1,6 @@
-package com.ias.gestioneventos.model;
+package com.ias.gestioneventos.domain.model;
 
+import com.ias.gestioneventos.infraestructure.persistenciaDatosJPA.Eventos;
 import jakarta.persistence.*;
 import lombok.Data;
 

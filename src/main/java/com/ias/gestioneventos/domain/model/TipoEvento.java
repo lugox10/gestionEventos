@@ -1,4 +1,4 @@
-package com.ias.gestioneventos.model;
+package com.ias.gestioneventos.domain.model;
 
 
 public enum TipoEvento {

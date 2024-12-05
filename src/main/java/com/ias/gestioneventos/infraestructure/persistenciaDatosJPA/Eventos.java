@@ -1,11 +1,15 @@
-package com.ias.gestioneventos.model;
+package com.ias.gestioneventos.infraestructure.persistenciaDatosJPA;
 
+import com.ias.gestioneventos.domain.model.TipoEvento;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
 @Table(name = "eventos")
 @Entity
 public class Eventos {
@@ -13,10 +17,12 @@ public class Eventos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
-    private LocalDateTime fechaInicio = LocalDateTime.now();
+    private LocalDateTime fechaInicio=LocalDateTime.now();
     private LocalDateTime fechaFin;
     private String lugar;
     @Enumerated(EnumType.STRING)
     private TipoEvento tipoEvento;
     private String descripcion;
+
+
 }

@@ -1,5 +1,6 @@
-package com.ias.gestioneventos.servicios;
+package com.ias.gestioneventos.infraestructure.adapter.out;
 
+import com.ias.gestioneventos.domain.gateways.DescripcionEventos;
 import org.springframework.stereotype.Service;
 
 @Service

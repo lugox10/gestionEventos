@@ -1,4 +1,4 @@
-package com.ias.gestioneventos.servicios;
+package com.ias.gestioneventos.domain.gateways;
 
 import org.springframework.stereotype.Repository;
 

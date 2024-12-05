@@ -1,4 +1,4 @@
-package com.ias.gestioneventos.configuracionCors;
+package com.ias.gestioneventos.infraestructure.configuracionCors;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.WebApplicationInitializer;
