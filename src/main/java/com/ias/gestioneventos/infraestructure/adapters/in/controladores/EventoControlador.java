@@ -1,82 +1,72 @@
 package com.ias.gestioneventos.infraestructure.adapters.in.controladores;
 
+import com.ias.gestioneventos.application.eventoDTO.EventoDTO;
+import com.ias.gestioneventos.application.mappers.EventoMapper;
+import com.ias.gestioneventos.domain.gateways.EventoGateway;
 import com.ias.gestioneventos.infraestructure.configuracionCors.ResponseWrapper;
-import com.ias.gestioneventos.infraestructure.persistenceJPA.entityJPA.EventoJPA;
-import com.ias.gestioneventos.domain.model.TipoEvento;
-import com.ias.gestioneventos.infraestructure.adapters.out.EventoServicioImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-
 
 import java.util.List;
-@ControllerAdvice
+import java.util.stream.Collectors;
+
 @RestController
-@RequestMapping("/iasapi/eventos")
-public class  EventoControlador {
+@RequestMapping("/api/eventos")
+public class EventoControlador {
 
     @Autowired
-    private EventoServicioImpl eventoServicioImpl;
+    private EventoGateway eventoGateway;
+
+    @Autowired
+    private EventoMapper eventoMapper;
+
+
 
     // Obtener todos los eventos
-    @GetMapping
-    public ResponseEntity<ResponseWrapper<List<EventoJPA>>> obtenerTodosLosEventos() {
-        try {
-            List<EventoJPA> eventos = eventoServicioImpl.obtenerEventos();
-            return ResponseEntity.ok(new ResponseWrapper<> (HttpStatus.OK.value(), "Eventos obtenidos exitosamente", eventos));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ResponseWrapper<> (HttpStatus.INTERNAL_SERVER_ERROR.value(), "Error al obtener eventos", null));
-        } //ResponseWraper es una clase que se encarga de envolver la respuesta de la API
-    }
 
-    // Obtener eventos por tipo
-    @GetMapping("/{tipoEvento}")
-    public ResponseEntity<ResponseWrapper<List<EventoJPA>>> obtenerEventosPorTipo(@PathVariable TipoEvento tipoEvento) {
+    @GetMapping
+    public ResponseEntity<ResponseWrapper<List<EventoDTO>>> obtenerEventos() {
         try {
-            List<EventoJPA> eventos = eventoServicioImpl.obtenerEventosPorTipo(tipoEvento);
-            return ResponseEntity.ok(new ResponseWrapper<> (HttpStatus.OK.value(), "Eventos obtenidos por tipo", eventos));
-        }catch (ResponseStatusException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(new ResponseWrapper<> (HttpStatus.NOT_FOUND.value(), "No se encontraron eventos para el tipo especificado", null));
+            List<EventoDTO> eventos = eventoGateway.obtenerEventos().stream()
+                    .map(eventoMapper::toDTO)
+                    .collect(Collectors.toList());
+            return ResponseEntity.ok(new ResponseWrapper<>(HttpStatus.OK.value(), "Eventos obtenidos exitosamente", eventos));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ResponseWrapper<> (HttpStatus.INTERNAL_SERVER_ERROR.value(), "Error al obtener eventos por tipo", null));
+                    .body(new ResponseWrapper<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), null));
         }
     }
 
+
+
     // Crear un nuevo evento
     @PostMapping
-    public ResponseEntity<ResponseWrapper<EventoJPA>> crearEvento(@RequestBody EventoJPA evento) {
+    public ResponseEntity<ResponseWrapper<EventoDTO>> crearEvento(@RequestBody EventoDTO eventoDTO) {
         try {
-            EventoJPA eventoGuardado = eventoServicioImpl.guardarEvento(evento);
-            return ResponseEntity.ok(new ResponseWrapper<> (HttpStatus.OK.value(), "Evento creado exitosamente", eventoGuardado));
+            EventoDTO eventoCreado = eventoMapper.toDTO(eventoGateway.guardarEvento(eventoMapper.toDomain(eventoDTO)));
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(new ResponseWrapper<>(HttpStatus.CREATED.value(), "Evento creado exitosamente", eventoCreado));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ResponseWrapper<> (HttpStatus.INTERNAL_SERVER_ERROR.value(), "Error al crear el evento", null));
+                    .body(new ResponseWrapper<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), null));
         }
     }
 
     // Actualizar un evento
     @PutMapping("/{id}")
-    public ResponseEntity<ResponseWrapper<EventoJPA>> actualizarEvento(@PathVariable Long id, @RequestBody EventoJPA evento) {
+    public ResponseEntity<ResponseWrapper<EventoDTO>> actualizarEvento(@PathVariable Long id, @RequestBody EventoDTO eventoDTO) {
         try {
-            EventoJPA eventoExistente = eventoServicioImpl.obtenerEventos().stream()
-                    .filter(e -> e.getId().equals(id))
-                    .findFirst()
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Evento no encontrado"));
-
-            evento.setId(id);
-            eventoServicioImpl.actualizarEvento(evento);
-            return ResponseEntity.ok(new ResponseWrapper<> (HttpStatus.OK.value(), "Evento actualizado exitosamente", evento));
-        } catch (ResponseStatusException e) {
+            eventoDTO.setId(id);
+            EventoDTO eventoActualizado = eventoMapper.toDTO(eventoGateway.actualizarEvento(eventoMapper.toDomain(eventoDTO)));
+            return ResponseEntity.ok(new ResponseWrapper<>(HttpStatus.OK.value(), "Evento actualizado exitosamente", eventoActualizado));
+        } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(new ResponseWrapper<> (HttpStatus.NOT_FOUND.value(), "Evento no encontrado", null));
+                    .body(new ResponseWrapper<>(HttpStatus.NOT_FOUND.value(), e.getMessage(), null));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ResponseWrapper<> (HttpStatus.INTERNAL_SERVER_ERROR.value(), "Error al actualizar el evento", null));
+                    .body(new ResponseWrapper<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), null));
         }
     }
 }

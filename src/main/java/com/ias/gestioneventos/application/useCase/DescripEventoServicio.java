@@ -1,6 +1,7 @@
 package com.ias.gestioneventos.application.useCase;
 
 import com.ias.gestioneventos.domain.gateways.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
