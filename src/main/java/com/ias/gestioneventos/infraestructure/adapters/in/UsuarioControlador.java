@@ -1,7 +1,7 @@
 package com.ias.gestioneventos.infraestructure.adapters.in;
 
 import com.ias.gestioneventos.infraestructure.configuracionCors.ResponseWrapper;
-import com.ias.gestioneventos.domain.model.Eventos;
+import com.ias.gestioneventos.infraestructure.persistenceJPA.entityJPA.EventoJPA;
 import com.ias.gestioneventos.domain.model.Usuario;
 import com.ias.gestioneventos.infraestructure.adapters.out.RegistroEventoServicioImpl;
 import com.ias.gestioneventos.infraestructure.adapters.out.UsuarioServicio;
@@ -56,14 +56,14 @@ public class UsuarioControlador {
     }
 
     @GetMapping("/{id}/eventos")
-    public ResponseEntity<ResponseWrapper<List<Eventos>>> obtenerEventosPorUsuario(@PathVariable Long id) {
+    public ResponseEntity<ResponseWrapper<List<EventoJPA>>> obtenerEventosPorUsuario(@PathVariable Long id) {
         try {
-            List<Eventos> eventos = usuarioServicio.obtenerEventosPorUsuario(id);
-            ResponseWrapper<List<Eventos>> response = new ResponseWrapper<>(HttpStatus.OK.value (),
+            List<EventoJPA> eventos = usuarioServicio.obtenerEventosPorUsuario(id);
+            ResponseWrapper<List<EventoJPA>> response = new ResponseWrapper<>(HttpStatus.OK.value (),
                     "Eventos obtenidos para el usuario", eventos);
             return ResponseEntity.ok(response);
         } catch (Exception e) {
-            ResponseWrapper<List<Eventos>> response = new ResponseWrapper<>(HttpStatus.INTERNAL_SERVER_ERROR.value (),
+            ResponseWrapper<List<EventoJPA>> response = new ResponseWrapper<>(HttpStatus.INTERNAL_SERVER_ERROR.value (),
                     "Error al obtener los eventos: " + e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }

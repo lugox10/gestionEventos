@@ -2,9 +2,9 @@ package com.ias.gestioneventos.infraestructure.adapters.out;
 
 import com.ias.gestioneventos.application.useCase.DescripEventoServicio;
 import com.ias.gestioneventos.application.useCase.EventoServicio;
-import com.ias.gestioneventos.domain.model.Eventos;
+import com.ias.gestioneventos.infraestructure.persistenceJPA.entityJPA.EventoJPA;
 import com.ias.gestioneventos.domain.model.TipoEvento;
-import com.ias.gestioneventos.infraestructure.persistenceJPA.repositorios.EventoRepositorio;
+import com.ias.gestioneventos.infraestructure.persistenceJPA.EventoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,12 +24,12 @@ public class EventoServicioImpl {
 
 
     // Método para obtener todos los eventos
-    public List<Eventos> obtenerEventos() {
+    public List<EventoJPA> obtenerEventos() {
         return eventoServicio.obtenerEventos();
     }
 
     // Refactorizando el método guardarEvento para asociar la descripción
-    public Eventos guardarEvento(Eventos evento) {
+    public EventoJPA guardarEvento(EventoJPA evento) {
         String descripcion = obtenerDescripcionPorTipoEvento(evento.getTipoEvento());// llamamos el metodo obtenerDescripcionPorTipoEvento para obtener la descripción y anexarla al event
         if (descripcion != null) {
             evento.setDescripcion(descripcion);
@@ -67,8 +67,8 @@ public class EventoServicioImpl {
         }
     }
 
-    public Eventos actualizarEvento(Eventos eventoActualizado) {
-        Eventos eventoExistente = eventoServicio.actualizarEvento(eventoActualizado);
+    public EventoJPA actualizarEvento(EventoJPA eventoActualizado) {
+        EventoJPA eventoExistente = eventoServicio.actualizarEvento(eventoActualizado);
         if (eventoExistente != null) {
             eventoExistente.setFechaInicio(eventoActualizado.getFechaInicio());
             eventoExistente.setFechaFin(eventoActualizado.getFechaFin());
@@ -82,7 +82,7 @@ public class EventoServicioImpl {
         return null; // Devuelve null si no se encuentra el evento
     }
 
-    public List<Eventos> obtenerEventosPorTipo( TipoEvento tipoEvento) {
+    public List<EventoJPA> obtenerEventosPorTipo(TipoEvento tipoEvento) {
         return eventoRepositorio.findAllByTipoEvento(tipoEvento);
     }
 

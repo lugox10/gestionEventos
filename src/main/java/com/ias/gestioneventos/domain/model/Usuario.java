@@ -1,5 +1,6 @@
     package com.ias.gestioneventos.domain.model;
 
+    import com.ias.gestioneventos.infraestructure.persistenceJPA.entityJPA.EventoJPA;
     import jakarta.persistence.*;
     import jakarta.validation.constraints.NotNull;
     import lombok.Data;
@@ -28,5 +29,5 @@
                 name = "usuario_evento", joinColumns = @JoinColumn(name = "usuario_id"),
                 inverseJoinColumns = @JoinColumn(name = "evento_id"))
 
-        private List<Eventos> eventos; // lista de eventos a los que el usuario se ha registrado
+        private List<EventoJPA> eventos; // lista de eventos a los que el usuario se ha registrado
     }

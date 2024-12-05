@@ -1,5 +1,7 @@
-package com.ias.gestioneventos.domain.model;
+package com.ias.gestioneventos.infraestructure.persistenceJPA.entityJPA;
 
+import com.ias.gestioneventos.domain.model.TipoDeLugaresParaEventos;
+import com.ias.gestioneventos.domain.model.TipoEvento;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -9,7 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @Table(name = "eventos")
 @Entity
-public class Eventos {
+public class EventoJPA {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

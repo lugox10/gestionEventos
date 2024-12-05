@@ -1,4 +1,4 @@
-package com.ias.gestioneventos.infraestructure.persistenceJPA.repositorios;
+package com.ias.gestioneventos.infraestructure.persistenceJPA;
 
 import com.ias.gestioneventos.domain.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;

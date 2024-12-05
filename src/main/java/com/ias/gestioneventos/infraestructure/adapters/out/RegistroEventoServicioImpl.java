@@ -2,10 +2,10 @@ package com.ias.gestioneventos.infraestructure.adapters.out;
 
 import com.ias.gestioneventos.domain.model.RegistroEvento;
 import com.ias.gestioneventos.domain.model.Usuario;
-import com.ias.gestioneventos.domain.model.Eventos;
-import com.ias.gestioneventos.infraestructure.persistenceJPA.repositorios.EventoRepositorio;
-import com.ias.gestioneventos.infraestructure.persistenceJPA.repositorios.RegistroEventoRepositorio;
-import com.ias.gestioneventos.infraestructure.persistenceJPA.repositorios.UsuarioRepositorio;
+import com.ias.gestioneventos.infraestructure.persistenceJPA.entityJPA.EventoJPA;
+import com.ias.gestioneventos.infraestructure.persistenceJPA.EventoRepositorio;
+import com.ias.gestioneventos.infraestructure.persistenceJPA.RegistroEventoRepositorio;
+import com.ias.gestioneventos.infraestructure.persistenceJPA.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +26,7 @@ public class RegistroEventoServicioImpl {
     // Método para registrar un usuario en un evento
     public RegistroEvento registrarUsuarioEnEvento(Long usuarioId, Long eventoId) {
         Usuario usuario = usuarioRepository.findById(usuarioId).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        Eventos evento = eventosRepository.findById(eventoId).orElseThrow(() -> new RuntimeException("Evento no encontrado"));
+        EventoJPA evento = eventosRepository.findById(eventoId).orElseThrow(() -> new RuntimeException("Evento no encontrado"));
 
         RegistroEvento registroEvento = new RegistroEvento();
         registroEvento.setUsuario(usuario);

@@ -1,7 +1,7 @@
 package com.ias.gestioneventos.application.useCase;
 
-import com.ias.gestioneventos.domain.model.Eventos;
-import com.ias.gestioneventos.infraestructure.persistenceJPA.repositorios.EventoRepositorio;
+import com.ias.gestioneventos.infraestructure.persistenceJPA.entityJPA.EventoJPA;
+import com.ias.gestioneventos.infraestructure.persistenceJPA.EventoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,15 +13,15 @@ public class EventoServicio {
     @Autowired
     private EventoRepositorio eventoRepositorio;
 
-    public List<Eventos> obtenerEventos() {
+    public List<EventoJPA> obtenerEventos() {
         return eventoRepositorio.findAll();
     }
 
-    public Eventos guardarEvento(Eventos evento) {
+    public EventoJPA guardarEvento(EventoJPA evento) {
         return eventoRepositorio.save(evento);
     }
 
-    public Eventos actualizarEvento(Eventos evento) {
+    public EventoJPA actualizarEvento(EventoJPA evento) {
         return eventoRepositorio.save(evento);
     }
 

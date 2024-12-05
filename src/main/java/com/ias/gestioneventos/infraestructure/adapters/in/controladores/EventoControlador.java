@@ -1,7 +1,7 @@
 package com.ias.gestioneventos.infraestructure.adapters.in.controladores;
 
 import com.ias.gestioneventos.infraestructure.configuracionCors.ResponseWrapper;
-import com.ias.gestioneventos.domain.model.Eventos;
+import com.ias.gestioneventos.infraestructure.persistenceJPA.entityJPA.EventoJPA;
 import com.ias.gestioneventos.domain.model.TipoEvento;
 import com.ias.gestioneventos.infraestructure.adapters.out.EventoServicioImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +22,9 @@ public class  EventoControlador {
 
     // Obtener todos los eventos
     @GetMapping
-    public ResponseEntity<ResponseWrapper<List<Eventos>>> obtenerTodosLosEventos() {
+    public ResponseEntity<ResponseWrapper<List<EventoJPA>>> obtenerTodosLosEventos() {
         try {
-            List<Eventos> eventos = eventoServicioImpl.obtenerEventos();
+            List<EventoJPA> eventos = eventoServicioImpl.obtenerEventos();
             return ResponseEntity.ok(new ResponseWrapper<> (HttpStatus.OK.value(), "Eventos obtenidos exitosamente", eventos));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -34,9 +34,9 @@ public class  EventoControlador {
 
     // Obtener eventos por tipo
     @GetMapping("/{tipoEvento}")
-    public ResponseEntity<ResponseWrapper<List<Eventos>>> obtenerEventosPorTipo(@PathVariable TipoEvento tipoEvento) {
+    public ResponseEntity<ResponseWrapper<List<EventoJPA>>> obtenerEventosPorTipo(@PathVariable TipoEvento tipoEvento) {
         try {
-            List<Eventos> eventos = eventoServicioImpl.obtenerEventosPorTipo(tipoEvento);
+            List<EventoJPA> eventos = eventoServicioImpl.obtenerEventosPorTipo(tipoEvento);
             return ResponseEntity.ok(new ResponseWrapper<> (HttpStatus.OK.value(), "Eventos obtenidos por tipo", eventos));
         }catch (ResponseStatusException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -49,9 +49,9 @@ public class  EventoControlador {
 
     // Crear un nuevo evento
     @PostMapping
-    public ResponseEntity<ResponseWrapper<Eventos>> crearEvento(@RequestBody Eventos evento) {
+    public ResponseEntity<ResponseWrapper<EventoJPA>> crearEvento(@RequestBody EventoJPA evento) {
         try {
-            Eventos eventoGuardado = eventoServicioImpl.guardarEvento(evento);
+            EventoJPA eventoGuardado = eventoServicioImpl.guardarEvento(evento);
             return ResponseEntity.ok(new ResponseWrapper<> (HttpStatus.OK.value(), "Evento creado exitosamente", eventoGuardado));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -61,9 +61,9 @@ public class  EventoControlador {
 
     // Actualizar un evento
     @PutMapping("/{id}")
-    public ResponseEntity<ResponseWrapper<Eventos>> actualizarEvento(@PathVariable Long id, @RequestBody Eventos evento) {
+    public ResponseEntity<ResponseWrapper<EventoJPA>> actualizarEvento(@PathVariable Long id, @RequestBody EventoJPA evento) {
         try {
-            Eventos eventoExistente = eventoServicioImpl.obtenerEventos().stream()
+            EventoJPA eventoExistente = eventoServicioImpl.obtenerEventos().stream()
                     .filter(e -> e.getId().equals(id))
                     .findFirst()
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Evento no encontrado"));

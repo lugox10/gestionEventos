@@ -1,5 +1,6 @@
 package com.ias.gestioneventos.domain.model;
 
+import com.ias.gestioneventos.infraestructure.persistenceJPA.entityJPA.EventoJPA;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,6 +19,6 @@ public class RegistroEvento {
 
     @ManyToOne
     @JoinColumn(name = "evento_id")
-    private Eventos evento;
+    private EventoJPA evento;
 
 }

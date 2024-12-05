@@ -1,8 +1,8 @@
 package com.ias.gestioneventos.infraestructure.adapters.out;
 
-import com.ias.gestioneventos.domain.model.Eventos;
+import com.ias.gestioneventos.infraestructure.persistenceJPA.entityJPA.EventoJPA;
 import com.ias.gestioneventos.domain.model.Usuario;
-import com.ias.gestioneventos.infraestructure.persistenceJPA.repositorios.UsuarioRepositorio;
+import com.ias.gestioneventos.infraestructure.persistenceJPA.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,22 +25,22 @@ public class UsuarioServicio {
         return usuarioRepositorio.findAll();
     }
 
-    public List<Eventos> obtenerEventosPorUsuario(Long usuarioId) {
+    public List<EventoJPA> obtenerEventosPorUsuario(Long usuarioId) {
         return usuarioRepositorio.findById(usuarioId).map(Usuario::getEventos).orElse(null);
     }
 
 
-    public Usuario registrarEnEvento(Usuario usuario, Eventos evento) throws Exception {
+    public Usuario registrarEnEvento(Usuario usuario, EventoJPA evento) throws Exception {
         // Verificar si el usuario o evento son nulos
         if (usuario == null || evento == null) {
             throw new IllegalArgumentException("El usuario o el evento no pueden ser nulos");
         }
 
         // Obtener la lista de eventos actuales del usuario
-        List<Eventos> eventosUsuario = usuario.getEventos();
+        List<EventoJPA> eventoJPAUsuario = usuario.getEventos();
 
         // Validar si el usuario ya está registrado en el evento
-        if (eventosUsuario.contains(evento)) {
+        if (eventoJPAUsuario.contains(evento)) {
             throw new Exception("El usuario ya está registrado en este evento");
         }
 
@@ -51,8 +51,8 @@ public class UsuarioServicio {
         }
 
         // Añadir el evento a la lista de eventos del usuario
-        eventosUsuario.add(evento);
-        usuario.setEventos(eventosUsuario);
+        eventoJPAUsuario.add(evento);
+        usuario.setEventos(eventoJPAUsuario);
 
         // Guardar el usuario actualizado en el repositorio
         return usuarioRepositorio.save(usuario);
