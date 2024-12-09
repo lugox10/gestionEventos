@@ -1,6 +1,6 @@
 #EJERCICIO PROPUESTO por ias-Arquitectura GestionEventos: este ejercicio fue realizado con java, spring boot, bd en h2.
 
-#Este ejercico esta construido con el patron arquitectonico Modelo-Vista-Controlador (MVC),  repositorio de la vista => https://github.com/lugox10/gestion-Eventos-frontend (NO terminado) creada con Angular
+#Este ejercico esta construido con el patron arquitectonico Modelo-Vista-Controlador (MVC),  repositorio de la vista => https://github.com/lugox10/gestion-Eventos-frontend (ver en el link) creada con Angular
 
 #paradigma de programacion orientada a objetos(OOP).
 
