@@ -3,7 +3,7 @@ import java.time.LocalDateTime;
 
 
 //ESTA ES UNA CLASE GENERICA PARA EL MANEJO DE ERRORES Y RESPUESTAS DE LA API,
-// AQUI PUEDES CONFIGURAR ATRIBUTOS PARA QUE SEAN MOSTRADOS EN LA RESPUESTA DE LA API
+// AQUI PUEDO CONFIGURAR ATRIBUTOS PARA QUE SEAN MOSTRADOS EN LA RESPUESTA DE LA API
 public class ResponseWrapper<T> {
     private int status;
     private String message;
@@ -17,7 +17,6 @@ public class ResponseWrapper<T> {
         this.timestamp = LocalDateTime.now(); // Asignar automáticamente el tiempo actual
     }
 
-    // Getters y setters
     public int getStatus() {
         return status;
     }
