@@ -26,5 +26,11 @@
 #NOTA:Esto es lo que llevo provado Hasta el momento. ya que actualice unas interfaces y repositorios que no seguian los lineamientos propuestos por el Dep de Arquitectura.
 #gracias por las observaciones y recomendaciones, y ala espera de nuevos ejercicios y o requerimientos en este proyecto, mientras tratare de culminarlo o finalizarlo con las otras clases propuestas asi como las implementaciones de validaciones, jwt y docker 
 
+#se logro hacer el ejercicio con la estructura de programacio exagonal y clean arquitecture
+![eventos1](https://github.com/user-attachments/assets/3861e2c2-d071-4603-9933-f086abf489e7)
 
+#se estudiaron librerias para mensajes de validaciones peronalizadas 
 
+mensajeria de validaciones personalizada ![evento2](https://github.com/user-attachments/assets/c9abf664-eb7c-4485-a9de-2db43f0b62e2)
+
+sigo estudiando  clean arquitecture para afianzar conocimientos posteriormente dokerizar el proyecto.
