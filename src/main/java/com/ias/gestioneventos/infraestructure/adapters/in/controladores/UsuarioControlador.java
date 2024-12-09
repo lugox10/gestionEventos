@@ -1,4 +1,4 @@
-package com.ias.gestioneventos.infraestructure.adapters.in;
+package com.ias.gestioneventos.infraestructure.adapters.in.controladores;
 
 import com.ias.gestioneventos.infraestructure.configuracionCors.ResponseWrapper;
 import com.ias.gestioneventos.infraestructure.persistenceJPA.entityJPA.EventoJPA;
